@@ -3,10 +3,14 @@ package com.vivi.bugTracking.controller;
 import com.vivi.bugTracking.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -30,10 +34,22 @@ public class EmployeeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello() {
-        System.out.println("hello-----------------");
-        return "hello";
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String login(HttpServletRequest request, HttpServletResponse response) {
+        return "index";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(Model model,
+                        HttpServletRequest request) {
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+        if (employeeDao.verfication(userName, password)) {
+            return "success";
+        } else {
+            return "error";
+        }
+
     }
 
 }
