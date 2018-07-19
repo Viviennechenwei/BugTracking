@@ -7,6 +7,11 @@
     <title>Hello World</title>
 </head>
 <body>
-<center>Hello SpringMVC!</center>
+<form action="login" method="post">
+    用户名：<input type="text" name="userName"/><br/>
+    密&nbsp;&nbsp;码：<input type="password" name="password"/>
+    <input type="submit" value="登陆"/>
+    <a href="regist">注册</a>
+</form>
 </body>
 </html>

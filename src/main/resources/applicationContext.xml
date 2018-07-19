@@ -7,6 +7,5 @@
     <!--<context:annotation-config/>-->
     <import resource="classpath*:dataSource.xml"/>
     <bean id="getEmpNumber" class="com.vivi.bugTracking.dao.EmployeeDao"/>
-    <bean id="loginVerfication" class="com.vivi.bugTracking.dao.LoginVerfication"/>
     <context:component-scan base-package="com.vivi.bugTracking"/>
 </beans>
