@@ -8,10 +8,10 @@
 </head>
 <body>
 <form action="login" method="post">
-    用户名：<input type="text" name="userName"/><br/>
-    密&nbsp;&nbsp;码：<input type="password" name="password"/>
-    <input type="submit" value="登陆"/>
-    <a href="regist">注册</a>
+    userName：<input type="text" name="userName"/><br/>
+    password：<input type="password" name="password"/>
+    <input type="submit" value="Login"/>
+    <a href="register" value="Register">Register</a>
 </form>
 </body>
 </html>
