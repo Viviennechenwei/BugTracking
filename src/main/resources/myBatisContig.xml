@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 指定数据库连接信息的位置 -->
+    <properties resource="applicationContext.properties"></properties>
+    <!--类型别名，默认引入com.zhangguo.Spring61.entities下的所有类 -->
+    <typeAliases>
+        <package name="com.vivi.bugTracking.model"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driverClass}" />
+                <property name="url" value="${db.url}" />
+                <property name="username" value="${db.username}" />
+                <property name="password" value="${db.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--引入映射文件 -->
+        <mapper resource="com/vivi/bugTracking/mapper/EmployeeMapper.xml" />
+    </mappers>
+</configuration>
