@@ -1,9 +1,13 @@
 package com.vivi.bugTracking.shiro;
 
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.AccessControlFilter;
+import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,15 +15,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Configuration
 public class ShiroConfiguration {
 
     @Bean
-    public SecurityManager securityManager(EmployeeRealm employeeRealm) {
+    public SecurityManager securityManager(StatelessRealm statelessRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(employeeRealm);
+        securityManager.setRealm(statelessRealm);
+        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+        DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+        defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+        subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+        securityManager.setSubjectDAO(subjectDAO);
         return securityManager;
     }
 
@@ -44,22 +56,12 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置securityManager
         bean.setSecurityManager(securityManager);
-        //设置登录页�?�
-        //�?�以写路由也�?�以写jsp页�?�的访问路径
-        bean.setLoginUrl("/login");
-        //设置登录�?功跳转的页�?�
-        bean.setSuccessUrl("/pages/index.jsp");
-        //设置未授�?�跳转的页�?�
-        bean.setUnauthorizedUrl("/pages/unauthorized.jsp");
-        //定义过滤器
+        bean.getFilters().put("anon", new AnonymousFilter());
+        bean.getFilters().put("statelessAuthc", new JwtFilter());
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/index", "authc");
-        filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/loginSubmit", "anon");
-        filterChainDefinitionMap.put("/druid/**", "anon");
+        filterChainDefinitionMap.put("/api/auth/**", "anon");
         filterChainDefinitionMap.put("/resources/**", "anon");
-        //需�?登录访问的资�? , 一般将/**放在最下边
-        filterChainDefinitionMap.put("/**", "authc");
+        filterChainDefinitionMap.put("/**", "statelessAuthc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }

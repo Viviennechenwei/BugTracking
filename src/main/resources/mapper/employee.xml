@@ -71,6 +71,7 @@
 
 
     <select id="selectRange" resultMap="employeeResultMap">
+        <bind name="nameFilter" value="'%' + nameFilter + '%'"/>
         select e.id,
         e.login_id,
         e.first_name,
@@ -84,8 +85,8 @@
         from employee e
         inner join role r on e.role_id = r.id
         <where>
-            <if test="nameFilter!=null">
-                e.login_id like '%#{nameFilter}%' and
+            <if test="nameFilter != null">
+                e.login_id like #{nameFilter}
             </if>
         </where>
         <choose>
@@ -100,12 +101,13 @@
     </select>
 
     <select id="count" resultType="int">
+        <bind name="nameFilter" value="'%' + nameFilter + '%'"/>
         select count(1)
         from employee e
         inner join role r on e.role_id = r.id
         <where>
             <if test="nameFilter!=null">
-                e.name like '%#{nameFilter}%' and
+                e.login_id like #{nameFilter}
             </if>
         </where>
     </select>

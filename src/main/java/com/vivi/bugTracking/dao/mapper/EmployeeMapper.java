@@ -13,7 +13,7 @@ public interface EmployeeMapper {
     List<Employee> selectRange(@Param("nameFilter") String nameFilter, @Param("start") int startIndex,
                                @Param("size") int pageSize, @Param("sortOrder") String sortOrder);
 
-    int count(String nameFilter);
+    int count(@Param("nameFilter") String nameFilter);
 
     int createEmployee(@Param("employee") Employee employee);
 

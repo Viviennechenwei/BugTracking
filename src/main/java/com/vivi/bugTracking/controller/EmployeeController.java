@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 //https://www.jianshu.com/p/f37f8c295057
 @Slf4j
 @RestController
-@RequestMapping(path = "/emp")
+@RequestMapping(path = "/api/employees")
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -56,12 +56,5 @@ public class EmployeeController {
         log.info("update employee id: {}, employee: {}", id, employee);
         employee.setPassword("123456");
         return employeeService.updateEmployee(employee);
-    }
-
-    @DeleteMapping("/{id}")
-    @RequiresPermissions(value = "project:delete")
-    public Employee updateEmployee(@PathVariable("id") int id) {
-        log.info("delete employee id: {}", id);
-        return new Employee();
     }
 }

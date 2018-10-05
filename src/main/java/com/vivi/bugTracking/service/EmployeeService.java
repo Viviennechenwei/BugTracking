@@ -31,6 +31,9 @@ public class EmployeeService {
 
 
     public PageBean<Employee> getEmployee(String nameFilter, int pageIndex, int pageSize, String sortOrder) {
+        if(nameFilter==null){
+            nameFilter="";
+        }
         int total = count(nameFilter);
         pageSize = pageSize == 0 ? total : pageSize;//if not set, get all
         PageBean<Employee> employeePage = new PageBean<>(pageIndex, pageSize, total);
