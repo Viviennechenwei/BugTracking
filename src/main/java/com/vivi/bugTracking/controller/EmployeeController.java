@@ -4,6 +4,8 @@ import com.vivi.bugTracking.exception.DataException;
 import com.vivi.bugTracking.model.Employee;
 import com.vivi.bugTracking.model.PageBean;
 import com.vivi.bugTracking.service.EmployeeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 //https://www.jianshu.com/p/f37f8c295057
 @Slf4j
+@Api(value = "Employee Service")
 @RestController
 @RequestMapping(path = "/api/employees")
 public class EmployeeController {
@@ -23,6 +26,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @ApiOperation(value = "Get Employee", notes = "Get a list of employees", response = EmployeeController.class)
     @GetMapping()
     @RequiresPermissions(value = "employee:read")
     public ResponseEntity<PageBean<Employee>> getEmployees(@RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
@@ -38,6 +42,7 @@ public class EmployeeController {
         }
     }
 
+    @ApiOperation(value = "Create Employee", notes = "Creation of a new Employee", response = EmployeeController.class)
     @PostMapping
     @RequiresPermissions(value = "employee:create")
     public Employee addEmployee(@RequestBody @ModelAttribute("employee") Employee employee) {

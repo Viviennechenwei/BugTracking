@@ -22,6 +22,11 @@
     <mvc:default-servlet-handler/>
     <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
     <mvc:resources mapping="/index.xml" location="/"/>
+    <!-- swagger -->
+    <bean class="com.vivi.bugTracking.SwaggerConfig"/>
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <!-- swagger -->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 前缀 -->
         <!--/WEB-INF/jsp/hello.jsp-->
