@@ -45,9 +45,10 @@ public class EmployeeController {
     @ApiOperation(value = "Create Employee", notes = "Creation of a new Employee", response = EmployeeController.class)
     @PostMapping
     @RequiresPermissions(value = "employee:create")
-    public Employee addEmployee(@RequestBody @ModelAttribute("employee") Employee employee) {
+    public Employee addEmployee(@RequestBody Employee employee) {
         log.info("create employee id: {}", employee);
         try {
+            employee.setPassword("123456");
             return employeeService.addEmployee(employee);
         } catch (Exception e) {
             log.error("Failed to create new employee {}", employee, e);

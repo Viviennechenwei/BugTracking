@@ -7,5 +7,7 @@
     <import resource="classpath*:dataSource.xml"/>
     <import resource="classpath*:dao.xml"/>
     <import resource="classpath*:shiro-config.xml"/>
-    <context:component-scan base-package="com.vivi.bugTracking"/>
+    <context:component-scan base-package="com.vivi.bugTracking">
+        <context:exclude-filter type="regex" expression="com.vivi.bugTracking.SwaggerConfig"/>
+    </context:component-scan>
 </beans>

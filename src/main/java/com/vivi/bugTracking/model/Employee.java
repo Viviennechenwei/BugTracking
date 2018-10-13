@@ -18,6 +18,7 @@ public class Employee {
     private String password;
     private String email;
     private Role role;
+    private int deptId;
 
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
