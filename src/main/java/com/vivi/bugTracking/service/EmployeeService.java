@@ -31,8 +31,8 @@ public class EmployeeService {
 
 
     public PageBean<Employee> getEmployee(String nameFilter, int pageIndex, int pageSize, String sortOrder) {
-        if(nameFilter==null){
-            nameFilter="";
+        if (nameFilter == null) {
+            nameFilter = "";
         }
         int total = count(nameFilter);
         pageSize = pageSize == 0 ? total : pageSize;//if not set, get all
@@ -63,5 +63,9 @@ public class EmployeeService {
             employeeMapper.updateEmployee(employee);
             return employeeMapper.selectById(employee.getId());
         }
+    }
+
+    public boolean loginIdExists(String loginId) {
+        return employeeMapper.selectLoginIdCount(loginId) > 0;
     }
 }

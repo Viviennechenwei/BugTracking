@@ -48,6 +48,12 @@
         where login_id = #{loginId}
     </select>
 
+    <select id="selectLoginIdCount" resultType="int">
+        select count(1)
+        from employee
+        where login_id = #{loginId}
+    </select>
+
     <select id="selectById" resultMap="employeeWithPasswordResultMap">
         select *
         from employee

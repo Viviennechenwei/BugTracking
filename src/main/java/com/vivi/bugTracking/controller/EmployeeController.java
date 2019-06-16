@@ -26,7 +26,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @ApiOperation(value = "Get Employee", notes = "Get a list of employees", response = EmployeeController.class)
+    @ApiOperation(value = "Get Employee", notes = "Get a list of employees", response = ResponseEntity.class)
     @GetMapping()
     @RequiresPermissions(value = "employee:read")
     public ResponseEntity<PageBean<Employee>> getEmployees(@RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
@@ -42,7 +42,7 @@ public class EmployeeController {
         }
     }
 
-    @ApiOperation(value = "Create Employee", notes = "Creation of a new Employee", response = EmployeeController.class)
+    @ApiOperation(value = "Create Employee", notes = "Creation of a new Employee", response = Employee.class)
     @PostMapping
     @RequiresPermissions(value = "employee:create")
     public Employee addEmployee(@RequestBody Employee employee) {
@@ -56,11 +56,24 @@ public class EmployeeController {
         }
     }
 
+    @ApiOperation(value = "Update Employee", notes = "Update employee", response = Employee.class)
     @PutMapping("/{id}")
     @RequiresPermissions(value = "employee:update")
     public Employee updateEmployee(@PathVariable("id") Integer id, @RequestBody Employee employee) {
         log.info("update employee id: {}, employee: {}", id, employee);
         employee.setPassword("123456");
         return employeeService.updateEmployee(employee);
+    }
+
+    @ApiOperation(value = "Check whether loginId exists", response = ResponseEntity.class)
+    @GetMapping("/loginId/{loginId}")
+    @RequiresPermissions(value = "employee:read")
+    public ResponseEntity loginIdExists(@PathVariable("loginId") String loginId) {
+        log.info("Check existence of login {}", loginId);
+        if (employeeService.loginIdExists(loginId)) {
+            return ResponseEntity.ok().body(null);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

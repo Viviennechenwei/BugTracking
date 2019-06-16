@@ -20,4 +20,6 @@ public interface EmployeeMapper {
     Employee selectById(@Param("id") int id);
 
     int updateEmployee(@Param("employee") Employee employee);
+
+    int selectLoginIdCount(@Param("loginId") String loginId);
 }

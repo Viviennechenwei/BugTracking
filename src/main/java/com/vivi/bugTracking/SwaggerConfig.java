@@ -39,8 +39,8 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         ApiInfo apiInfo = new ApiInfo(
-                "Spring Boot REST API",
-                "Spring Boot REST API for Online Store",
+                "BugTracking Rest Api",
+                "BugTracking Rest Api",
                 "1.0",
                 "Terms of service",
                 new Contact("Meng Sun", "http://www.nowebsite.com", "nomail@abc.com"),
