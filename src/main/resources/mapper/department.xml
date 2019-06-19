@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vivi.bugTracking.dao.mapper.DeptMapper">
+    <select id="selectAll" resultType="department">
+        select e.id, e.name
+        from department e
+    </select>
+</mapper>
