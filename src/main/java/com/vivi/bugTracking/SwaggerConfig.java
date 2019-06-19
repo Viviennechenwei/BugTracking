@@ -52,24 +52,11 @@ public class SwaggerConfig {
     private ApiKey apiKey() {
         return new ApiKey("AUTHORIZATION", "Authorization", "header");
     }
-
-    @Bean
-    SecurityConfiguration security() {
-        return new SecurityConfiguration(
-                null,
-                null,
-                null, // realm Needed for authenticate button to work
-                null, // appName Needed for authenticate button to work
-                "BEARER ",// apiKeyValue
-                ApiKeyVehicle.HEADER,
-                "AUTHORIZATION", //apiKeyName
-                null);
-    }
-
+    
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("/*"))
+                .forPaths(PathSelectors.regex("^(?!/api/auth).*$"))
                 .build();
     }
 
