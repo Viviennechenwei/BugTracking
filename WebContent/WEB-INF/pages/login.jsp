@@ -7,9 +7,9 @@
     <title>Hello World</title>
 </head>
 <body>
-<form action="login" method="post">
-    用户名：<input type="text" name="userName"/><br/>
-    密&nbsp;&nbsp;码：<input type="password" name="password"/>
+<form action="loginSubmit" method="post">
+    用户名：<input type="text" name="loginId" value="root"/><br/>
+    密码：<input type="password" name="password" value="root"/>
     <input type="submit" value="登陆"/>
     <a href="regist">注册</a>
 </form>

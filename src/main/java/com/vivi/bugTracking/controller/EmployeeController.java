@@ -1,55 +1,67 @@
 package com.vivi.bugTracking.controller;
 
-import com.vivi.bugTracking.dao.EmployeeDao;
+import com.vivi.bugTracking.exception.DataException;
+import com.vivi.bugTracking.model.Employee;
+import com.vivi.bugTracking.model.PageBean;
+import com.vivi.bugTracking.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-
-@Controller
-@RequestMapping
+//https://www.jianshu.com/p/f37f8c295057
+@Slf4j
+@RestController
+@RequestMapping(path = "/emp")
 public class EmployeeController {
 
+    private EmployeeService employeeService;
+
     @Autowired
-    EmployeeDao employeeDao;
-
-    @RequestMapping(value = "/getEmpCode", method = RequestMethod.GET)
-    public ModelAndView getEmpNumber() {
-        //1. call service
-        List<String> empList = employeeDao.getEmpNumber();
-        //2. prepare model(data to display on page) and view (where the data will be displayed)
-        ModelAndView modelAndView = new ModelAndView();
-        //2.1 set page name (hello.jsp)
-        modelAndView.setViewName("hello");
-        //2.2 set data to display  (hello.jsp: ${employees})
-        modelAndView.addObject("employees", empList);
-        //3. return to viewresolver(springmvc-servlet.xml/internalResourceViewResolver)  to resolve page
-        return modelAndView;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String login(HttpServletRequest request, HttpServletResponse response) {
-        return "index";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model,
-                        HttpServletRequest request) {
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        if (employeeDao.verfication(userName, password)) {
-            return "success";
-        } else {
-            return "error";
+    @GetMapping()
+    @RequiresPermissions(value = "employee:read")
+    public ResponseEntity<PageBean<Employee>> getEmployees(@RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+                                                           @RequestParam(value = "pageSize", required = false) Integer pageSize, @RequestParam(value = "sortOrder", required = false) String sortOrder) {
+        log.info("get employee, filter: {}", filter);
+        try {
+            int pageIdx = pageIndex == null ? 1 : pageIndex;
+            int size = pageSize == null ? 10 : pageSize;
+            PageBean<Employee> employee = employeeService.getEmployee(filter, pageIdx, size, sortOrder);
+            return ResponseEntity.ok(employee);
+        } catch (Exception e) {
+            throw new DataException("Can not get employee data", e, DataException.EMPLOYEE);
         }
-
     }
 
+    @PostMapping
+    @RequiresPermissions(value = "employee:create")
+    public Employee addEmployee(@RequestBody @ModelAttribute("employee") Employee employee) {
+        log.info("create employee id: {}", employee);
+        try {
+            return employeeService.addEmployee(employee);
+        } catch (Exception e) {
+            log.error("Failed to create new employee {}", employee, e);
+            throw new DataException("Failed to create new employee", e, DataException.EMPLOYEE);
+        }
+    }
+
+    @PutMapping("/{id}")
+    @RequiresPermissions(value = "employee:update")
+    public Employee updateEmployee(@PathVariable("id") Integer id, @RequestBody Employee employee) {
+        log.info("update employee id: {}, employee: {}", id, employee);
+        employee.setPassword("123456");
+        return employeeService.updateEmployee(employee);
+    }
+
+    @DeleteMapping("/{id}")
+    @RequiresPermissions(value = "project:delete")
+    public Employee updateEmployee(@PathVariable("id") int id) {
+        log.info("delete employee id: {}", id);
+        return new Employee();
+    }
 }

@@ -1,49 +1,34 @@
 package com.vivi.bugTracking.model;
 
-public class Employee {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Data
+public class Employee {
+    private int id;
     private String loginId;
     private String firstName;
-    private String lastNam;
-    private String passworod;
+    private String lastName;
+    private char gender;
+    private LocalDate birthDate;
+    @JsonIgnore
+    private String password;
+    private String email;
+    private Role role;
+
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDateTime hireDate;
 
     public Employee() {
     }
 
-    public Employee(String loginId, String passworod) {
+    public Employee(String loginId, String password) {
         this.loginId = loginId;
-        this.passworod = passworod;
-    }
-
-    public String getLoginId() {
-        return loginId;
-    }
-
-    public void setLoginId(String loginId) {
-        this.loginId = loginId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastNam() {
-        return lastNam;
-    }
-
-    public void setLastNam(String lastNam) {
-        this.lastNam = lastNam;
-    }
-
-    public String getPassworod() {
-        return passworod;
-    }
-
-    public void setPassworod(String passworod) {
-        this.passworod = passworod;
+        this.password = password;
     }
 }
+

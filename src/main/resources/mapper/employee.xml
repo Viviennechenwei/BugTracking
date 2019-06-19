@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 理论上随意命名 因为mybatis动态代理的使用 书写时，要讲namespace指定为接口的全路径 -->
+<mapper namespace="com.vivi.bugTracking.dao.mapper.EmployeeMapper">
+
+    <resultMap id="employeeResultMap" type="Employee">
+        <id property="id" column="id"/>
+        <result property="loginId" column="login_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="gender" column="gender"/>
+        <result property="email" column="email"/>
+        <result property="birthDate" column="birth_date"/>
+        <result property="hireDate" column="hire_date"/>
+        <association property="role" javaType="Role">
+            <id property="id" column="role_id"/>
+            <result property="name" column="role_name"/>
+            <collection property="permissions" column="role_id" ofType="Permission" javaType="java.util.Set"
+                        select="com.vivi.bugTracking.dao.mapper.PermissionMapper.selectPermissionByRoleId">
+            </collection>
+        </association>
+    </resultMap>
+    <resultMap id="employeeWithPasswordResultMap" type="Employee">
+        <id property="id" column="id"/>
+        <result property="loginId" column="login_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="gender" column="gender"/>
+        <result property="email" column="email"/>
+        <result property="birthDate" column="birth_date"/>
+        <result property="hireDate" column="hire_date"/>
+
+        <result property="password" column="password"/>
+        <association property="role" javaType="Role">
+            <id property="id" column="role_id"/>
+            <result property="name" column="role_name"/>
+            <collection property="permissions" column="role_id" ofType="Permission" javaType="java.util.Set"
+                        select="com.vivi.bugTracking.dao.mapper.PermissionMapper.selectPermissionByRoleId">
+            </collection>
+        </association>
+    </resultMap>
+    <select id="selectByLoginId" resultMap="employeeWithPasswordResultMap">
+        select *
+        from employee
+        where login_id = #{loginId}
+    </select>
+
+    <select id="selectById" resultMap="employeeWithPasswordResultMap">
+        select *
+        from employee
+        where id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="employeeResultMap">
+        select e.id,
+               e.login_id,
+               e.first_name,
+               e.last_name,
+               e.gender,
+               e.email,
+               e.birth_date,
+               e.valid_from as hire_date,
+               e.role_id,
+               r.name       as role_name
+        from employee e
+                 inner join role r on e.role_id = r.id
+    </select>
+
+
+    <select id="selectRange" resultMap="employeeResultMap">
+        select e.id,
+        e.login_id,
+        e.first_name,
+        e.last_name,
+        e.gender,
+        e.email,
+        e.birth_date,
+        e.valid_from as hire_date,
+        e.role_id,
+        r.name as role_name
+        from employee e
+        inner join role r on e.role_id = r.id
+        <where>
+            <if test="nameFilter!=null">
+                e.login_id like '%#{nameFilter}%' and
+            </if>
+        </where>
+        <choose>
+            <when test="sortOrder != null">
+                order by #{sortOrder}
+            </when>
+            <otherwise>
+                order by e.login_id asc
+            </otherwise>
+        </choose>
+        limit #{start}, #{size}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1)
+        from employee e
+        inner join role r on e.role_id = r.id
+        <where>
+            <if test="nameFilter!=null">
+                e.name like '%#{nameFilter}%' and
+            </if>
+        </where>
+    </select>
+
+    <insert id="createEmployee" parameterType="Employee" useGeneratedKeys="true" keyProperty="employee.id">
+        insert into employee (login_id, first_name, last_name, gender, email, birth_date, password)
+        values (#{employee.loginId},
+                #{employee.firstName},
+                #{employee.lastName},
+                #{employee.gender},
+                #{employee.email},
+                #{employee.birthDate},
+                #{employee.password})
+    </insert>
+
+    <update id="updateEmployee" parameterType="Employee">
+        update employee
+        set first_name = #{employee.firstName},
+            last_name  = #{employee.last_name}
+        where id = #{employee.id}
+    </update>
+</mapper>
