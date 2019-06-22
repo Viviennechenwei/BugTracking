@@ -19,7 +19,6 @@ public class JWTUtilTest {
         permissions.add("project:create");
         String token = JWTUtil.createToken("root", "admin", permissions);
         JWTUtil.parseToken(token);
-        System.out.println(token);
     }
 
     @Test

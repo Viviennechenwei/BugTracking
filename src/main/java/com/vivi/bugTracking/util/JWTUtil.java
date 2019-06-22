@@ -43,15 +43,10 @@ public class JWTUtil {
     }
 
     public static Claims parseToken(String token) {
-        try {
-            return Jwts.parser().setSigningKey(key)
-                    .requireIssuer("bugtracking.io")
-                    .parseClaimsJws(token)
-                    .getBody();//load user from database/cache
-        } catch (Exception e) {
-            log.error("Jwt verification failed", e);
-            return null;
-        }
+        return Jwts.parser().setSigningKey(key)
+                .requireIssuer("bugtracking.io")
+                .parseClaimsJws(token)
+                .getBody();//load user from database/cache
     }
 
 }
