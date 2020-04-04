@@ -1,7 +1,7 @@
 {
 	"_type": "Project",
 	"_id": "AAAAAAFF+h6SjaM2Hec=",
-	"name": "Untitled",
+	"resourceName": "Untitled",
 	"ownedElements": [
 		{
 			"_type": "UMLModel",
@@ -9,7 +9,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Model",
+			"resourceName": "Model",
 			"ownedElements": [
 				{
 					"_type": "UMLClassDiagram",
@@ -17,7 +17,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Main",
+					"resourceName": "Main",
 					"defaultDiagram": true,
 					"ownedViews": [
 						{
@@ -167,7 +167,7 @@
 											"top": 143,
 											"width": 287.2060546875,
 											"height": 13,
-											"text": "+checkUserExist(name)",
+											"text": "+checkUserExist(resourceName)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -184,7 +184,7 @@
 											"top": 158,
 											"width": 287.2060546875,
 											"height": 13,
-											"text": "+getUserByNameAndPassword(name, password)",
+											"text": "+getUserByNameAndPassword(resourceName, password)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2348,7 +2348,7 @@
 											"top": 168,
 											"width": 200.09716796875,
 											"height": 13,
-											"text": "+authenticate(name, password)",
+											"text": "+authenticate(resourceName, password)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2616,7 +2616,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "EmployeeServcie",
+					"resourceName": "EmployeeServcie",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -2624,7 +2624,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1uatqZKhX58="
 							},
-							"name": "changePassword",
+							"resourceName": "changePassword",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2632,7 +2632,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1uyt8pNOoRw="
 									},
-									"name": "employee",
+									"resourceName": "employee",
 									"stereotype": {
 										"$ref": "AAAAAAFk1zQhr5PdY5s="
 									},
@@ -2646,7 +2646,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1uatqZKhX58="
 							},
-							"name": "checkUserExist",
+							"resourceName": "checkUserExist",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2654,7 +2654,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk9bvdSB3JsRQ="
 									},
-									"name": "name"
+									"resourceName": "resourceName"
 								}
 							]
 						},
@@ -2664,7 +2664,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1uatqZKhX58="
 							},
-							"name": "getUserByNameAndPassword",
+							"resourceName": "getUserByNameAndPassword",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2672,7 +2672,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk9b3pyB3cDuc="
 									},
-									"name": "name",
+									"resourceName": "resourceName",
 									"type": ""
 								},
 								{
@@ -2681,7 +2681,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk9b3pyB3cDuc="
 									},
-									"name": "password",
+									"resourceName": "password",
 									"type": ""
 								}
 							]
@@ -2694,7 +2694,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "ProjectService",
+					"resourceName": "ProjectService",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -2702,7 +2702,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1ugiKJLUvyI="
 							},
-							"name": "createProject",
+							"resourceName": "createProject",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2710,7 +2710,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1uh3sJL+RNs="
 									},
-									"name": "project",
+									"resourceName": "project",
 									"stereotype": "Project",
 									"type": ""
 								}
@@ -2722,7 +2722,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1ugiKJLUvyI="
 							},
-							"name": "closeProject",
+							"resourceName": "closeProject",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2730,7 +2730,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1uim3JMFcCU="
 									},
-									"name": "project",
+									"resourceName": "project",
 									"stereotype": "Project",
 									"type": ""
 								}
@@ -2744,7 +2744,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "BugService",
+					"resourceName": "BugService",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -2752,7 +2752,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1y3zM5NdiV4="
 							},
-							"name": "createBug"
+							"resourceName": "createBug"
 						},
 						{
 							"_type": "UMLOperation",
@@ -2760,7 +2760,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1y3zM5NdiV4="
 							},
-							"name": "closeBug",
+							"resourceName": "closeBug",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2768,7 +2768,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1y6SUpOOZZs="
 									},
-									"name": "bug",
+									"resourceName": "bug",
 									"stereotype": {
 										"$ref": "AAAAAAFk1zNdsZOwklg="
 									},
@@ -2782,7 +2782,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1y3zM5NdiV4="
 							},
-							"name": "rejectBug"
+							"resourceName": "rejectBug"
 						},
 						{
 							"_type": "UMLOperation",
@@ -2790,7 +2790,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1y3zM5NdiV4="
 							},
-							"name": "getBugForProject"
+							"resourceName": "getBugForProject"
 						},
 						{
 							"_type": "UMLOperation",
@@ -2798,7 +2798,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1y3zM5NdiV4="
 							},
-							"name": "getBugForEmployee"
+							"resourceName": "getBugForEmployee"
 						}
 					]
 				},
@@ -2808,7 +2808,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Bug"
+					"resourceName": "Bug"
 				},
 				{
 					"_type": "UMLClass",
@@ -2816,7 +2816,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Employee",
+					"resourceName": "Employee",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -2824,7 +2824,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1zQhr5PdY5s="
 							},
-							"name": "role"
+							"resourceName": "role"
 						}
 					]
 				},
@@ -2834,7 +2834,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Project"
+					"resourceName": "Project"
 				},
 				{
 					"_type": "UMLClass",
@@ -2842,7 +2842,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Role",
+					"resourceName": "Role",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -2850,7 +2850,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1zRW0ZQy4DU="
 							},
-							"name": "rolePermission"
+							"resourceName": "rolePermission"
 						}
 					]
 				},
@@ -2860,7 +2860,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Permission"
+					"resourceName": "Permission"
 				},
 				{
 					"_type": "UMLClass",
@@ -2868,7 +2868,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Action"
+					"resourceName": "Action"
 				},
 				{
 					"_type": "UMLClass",
@@ -2876,7 +2876,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Resource"
+					"resourceName": "Resource"
 				},
 				{
 					"_type": "UMLClass",
@@ -2884,7 +2884,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "AdminService",
+					"resourceName": "AdminService",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -2892,7 +2892,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1zoLSpUR6zw="
 							},
-							"name": "addEmployee",
+							"resourceName": "addEmployee",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2900,7 +2900,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1zpMOpU7m5M="
 									},
-									"name": "employee",
+									"resourceName": "employee",
 									"stereotype": "Employee",
 									"type": ""
 								}
@@ -2912,7 +2912,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1zoLSpUR6zw="
 							},
-							"name": "grantRole",
+							"resourceName": "grantRole",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2920,7 +2920,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1zpSgpVBk64="
 									},
-									"name": "roleId",
+									"resourceName": "roleId",
 									"stereotype": "int",
 									"type": ""
 								},
@@ -2930,7 +2930,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk1zpSgpVBk64="
 									},
-									"name": "employeeId",
+									"resourceName": "employeeId",
 									"stereotype": "int",
 									"type": ""
 								}
@@ -2942,7 +2942,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk1zoLSpUR6zw="
 							},
-							"name": "updateEmployee"
+							"resourceName": "updateEmployee"
 						}
 					]
 				},
@@ -2952,7 +2952,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "AuthenticationInteceptor",
+					"resourceName": "AuthenticationInteceptor",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -2960,7 +2960,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk9awVkRzYQxs="
 							},
-							"name": "authenticate",
+							"resourceName": "authenticate",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2968,7 +2968,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk9a5IkR0KbA0="
 									},
-									"name": "name",
+									"resourceName": "resourceName",
 									"type": ""
 								},
 								{
@@ -2977,7 +2977,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFk9a5IkR0KbA0="
 									},
-									"name": "password",
+									"resourceName": "password",
 									"type": ""
 								}
 							]
@@ -2990,7 +2990,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "PriviledgeInteceptor",
+					"resourceName": "PriviledgeInteceptor",
 					"operations": [
 						{
 							"_type": "UMLOperation",
@@ -2998,7 +2998,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFk9a889h0Wn9c="
 							},
-							"name": "checkPermission"
+							"resourceName": "checkPermission"
 						}
 					]
 				},
@@ -3008,7 +3008,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "RoleService"
+					"resourceName": "RoleService"
 				}
 			]
 		},
@@ -3018,7 +3018,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Data Model1",
+			"resourceName": "Data Model1",
 			"ownedElements": [
 				{
 					"_type": "ERDDiagram",
@@ -3026,7 +3026,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFk1u5gxZNVZEY="
 					},
-					"name": "ERDDiagram1"
+					"resourceName": "ERDDiagram1"
 				}
 			]
 		}
