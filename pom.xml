@@ -8,7 +8,7 @@
     <artifactId>BugTracking</artifactId>
     <version>1.0-SNAPSHOT</version>
 <properties>
-    <springVersion>5.0.7.RELEASE</springVersion>
+    <springVersion>5.3.19</springVersion>
     <mysqlVersion>8.0.11</mysqlVersion>
     <logbackVersion>1.2.3</logbackVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
